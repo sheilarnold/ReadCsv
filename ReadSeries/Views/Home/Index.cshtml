@@ -6,40 +6,42 @@
 
 <div class="text-center">
     <p>Selecione o Arquivo CSV</p>
-    @using (Html.BeginForm("LerCSV", "Home", null, FormMethod.Post, null, new { @enctype = "multipart/form-data" }))
-    {
+    @*@using (Html.BeginForm("LerCSV", "Home", null, FormMethod.Post, null, new { @enctype = "multipart/form-data" }))
+    {*@
+    <form id="formInputCsv" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <input type="file" id="arquivo" name="arquivo" required />
         </div>
 
         <div class="form-group">
-            <input type="submit" value="Ler" class="btn btn-success" />
+            <input type="button" value="Ler" class="btn btn-success" />
         </div>
+    </form>
 
-        if (Model != null)
-        {
-            <table>
-                <thead>
-                    <tr>
-                        @foreach (DataColumn col in Model.Columns)
-                        {
-                            <th>@col.ColumnName</th>
-                        }
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (DataRow row in Model.Rows)
-                    {
-                       <tr>
+        @*if (Model != null)
+            {
+                <table>
+                    <thead>
+                        <tr>
                             @foreach (DataColumn col in Model.Columns)
                             {
-                                <td>@row[col.ColumnName]</td>
+                                <th>@col.ColumnName</th>
                             }
                         </tr>
-                    }
-                </tbody>
-            </table>
-        }
-    }
+                    </thead>
+                    <tbody>
+                        @foreach (DataRow row in Model.Rows)
+                        {
+                            <tr>
+                                @foreach (DataColumn col in Model.Columns)
+                                {
+                                    <td>@row[col.ColumnName]</td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }*@
+    @*}*@
 
 </div>

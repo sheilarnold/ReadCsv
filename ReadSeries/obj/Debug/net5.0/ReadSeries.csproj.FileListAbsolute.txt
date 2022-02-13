@@ -78,3 +78,11 @@ C:\Users\sheila\Documents\Projetos\ReadSeries\ReadSeries\obj\Debug\net5.0\ReadSe
 C:\Users\sheila\Documents\Projetos\ReadSeries\ReadSeries\obj\Debug\net5.0\ref\ReadSeries.dll
 C:\Users\sheila\Documents\Projetos\ReadSeries\ReadSeries\obj\Debug\net5.0\ReadSeries.pdb
 C:\Users\sheila\Documents\Projetos\ReadSeries\ReadSeries\obj\Debug\net5.0\ReadSeries.genruntimeconfig.cache
+C:\Users\sheila\Documents\Projetos\ReadSeries\ReadSeries\bin\Debug\net5.0\System.Web.Mvc.dll
+C:\Users\sheila\Documents\Projetos\ReadSeries\ReadSeries\bin\Debug\net5.0\System.Web.Razor.dll
+C:\Users\sheila\Documents\Projetos\ReadSeries\ReadSeries\bin\Debug\net5.0\System.Web.Helpers.dll
+C:\Users\sheila\Documents\Projetos\ReadSeries\ReadSeries\bin\Debug\net5.0\System.Web.WebPages.Deployment.dll
+C:\Users\sheila\Documents\Projetos\ReadSeries\ReadSeries\bin\Debug\net5.0\System.Web.WebPages.Razor.dll
+C:\Users\sheila\Documents\Projetos\ReadSeries\ReadSeries\bin\Debug\net5.0\System.Web.WebPages.dll
+C:\Users\sheila\Documents\Projetos\ReadSeries\ReadSeries\bin\Debug\net5.0\Microsoft.Web.Infrastructure.dll
+C:\Users\sheila\Documents\Projetos\ReadSeries\ReadSeries\bin\Debug\net5.0\Newtonsoft.Json.dll

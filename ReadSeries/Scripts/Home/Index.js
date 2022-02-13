@@ -1,30 +1,50 @@
-﻿$(document).ready(function () {
-    console.log("Machu Picchu")
+﻿
+function Enviar() {
+    var arquivo = $('#arquivo').prop("files");
 
-    $("#btnLer").click(function () {
-        console.log("aqui")
-        var formData = new FormData(this);
+    var formData = new FormData;
+    formData.append("arquivo", arquivo[0]);
 
-        $.ajax({
-            url: window.location.pathname,
-            type: 'POST',
-            data: formData,
-            success: function (data) {
-                alert("sucesso")
-                alert(data)
-            },
-            cache: false,
-            contentType: false,
-            processData: false,
-            xhr: function () { // Custom XMLHttpRequest
-                var myXhr = $.ajaxSettings.xhr();
-                if (myXhr.upload) { // Avalia se tem suporte a propriedade upload
-                    myXhr.upload.addEventListener('progress', function () {
-                        /* faz alguma coisa durante o progresso do upload */
-                    }, false);
-                }
-                return myXhr;
-            }
-        });
+    $.ajax({
+        url: "Home/LerCSV",
+        type: 'POST',
+        data: formData,
+        success: function (data) {
+            console.log(data);
+            exibeGrafico(JSON.parse(data.data));
+
+        },
+        cache: false,
+        contentType: false,
+        processData: false
     });
-});
+}
+
+function exibeGrafico(data) {
+    console.log(typeof (data));
+    console.log(data);
+    var myChart = echarts.init(document.getElementById('teste'));
+
+    var option = {
+        title: {
+            text: 'ECharts Getting Started Example'
+        },
+        tooltip: {},
+        legend: {
+            data: ['sales']
+        },
+        xAxis: {
+            data: ['Shirts', 'Cardigans', 'Chiffons', 'Pants', 'Heels', 'Socks']
+        },
+        yAxis: {},
+        series: [
+            {
+                name: 'sales',
+                type: 'bar',
+                data: [5, 20, 36, 10, 10, 20]
+            }
+        ]
+    };
+
+    myChart.setOption(option);
+}

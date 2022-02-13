@@ -11,6 +11,7 @@ using System.IO;
 using System.Data;
 using Microsoft.AspNetCore.Http;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace ReadSeries.Controllers
 {
@@ -40,8 +41,9 @@ namespace ReadSeries.Controllers
         }
 
         [HttpPost]
-        public ActionResult LerCSV(IFormFile arquivo)
+        public IActionResult LerCSV(IFormFile arquivo)
         {
+            var obj = new Object();
             if (ModelState.IsValid)
             {
                 if (arquivo != null && arquivo.Length > 0)
@@ -73,20 +75,38 @@ namespace ReadSeries.Controllers
                                 count += 1;
                             }
 
-                            return View("Index", dtcsv);
+                            var teste = "teste";
+                            //return View("Index", dtcsv);
+                            obj = new
+                            {
+                                success = true,
+                                data = JsonConvert.SerializeObject(dtcsv)
+                            };
+                            return new ObjectResult(obj);
                         }
                         catch (Exception ex)
                         {
-                            ModelState.AddModelError("Erro ao executar leitura", ex.Message);
+                            //ModelState.AddModelError("Erro ao executar leitura", ex.Message);
+                            obj = new
+                            {
+                                success = false,
+                                Message = "Erro ao executar leitura: " + ex.Message
+                            };
                         }
                     }
                     else
                     {
-                        ModelState.AddModelError("Arquivo", "Formato de arquivo inválido");
+                        //ModelState.AddModelError("Arquivo", "Formato de arquivo inválido");
+                        obj = new
+                        {
+                            success = false,
+                            Message = "Erro ao executar leitura: Formato de arquivo inválido"
+                        };
                     }
                 }
             }
-            return View("Index");
+            return new ObjectResult(obj);
+            //return View("Index");
         }
     }
 }

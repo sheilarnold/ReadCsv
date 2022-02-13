@@ -4,11 +4,11 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Read Series</title>
-        <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
 
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="~/css/site.css" />
 
+        <script src="~/lib/jquery-1.9.1.js"></script>
         <script src="~/lib/echarts-5.3.0/package/dist/echarts.js"></script>
         <script src="~/Scripts/Home/Index.js"></script>
 
@@ -31,6 +31,35 @@
             </main>
 
             <div id="grafico" style="width: 100%; height:400px;"></div>
+
+            <div id="resumo" class="d-none">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Serie</th>
+                            <th scope="col">Valor Máximo</th>
+                            <th scope="col">Valor Mínimo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>50ZI001/COTA-DIF</td>
+                            <td id="cota1max"></td>
+                            <td id="cota1min"></td>
+                        </tr>
+                        <tr>
+                            <td>50ZI002/COTA-DIF</td>
+                            <td id="cota2max"></td>
+                            <td id="cota2min"></td>
+                        </tr>
+                        <tr>
+                            <td>50ZI003/COTA-DIF</td>
+                            <td id="cota3max"></td>
+                            <td id="cota3min"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
             
         </div>
 

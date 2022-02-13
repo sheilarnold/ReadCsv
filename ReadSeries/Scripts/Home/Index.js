@@ -51,7 +51,7 @@ function exibeGrafico(data) {
         data_displacement50ZI003.push(data[item]["50ZI003/COTA-DIF - Displacement (mm)"] != "" ? parseFloat((data[item]["50ZI003/COTA-DIF - Displacement (mm)"]).replace(',', '.')) : 0);
     });
 
-    var myChart = echarts.init(document.getElementById('teste'));
+    var myChart = echarts.init(document.getElementById('grafico'));
 
     series_grafico.push({
         name: '50ZI001/COTA-DIF - Displacement (mm)',

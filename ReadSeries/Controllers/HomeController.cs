@@ -75,8 +75,6 @@ namespace ReadSeries.Controllers
                                 count += 1;
                             }
 
-                            var teste = "teste";
-                            //return View("Index", dtcsv);
                             obj = new
                             {
                                 success = true,
@@ -86,7 +84,6 @@ namespace ReadSeries.Controllers
                         }
                         catch (Exception ex)
                         {
-                            //ModelState.AddModelError("Erro ao executar leitura", ex.Message);
                             obj = new
                             {
                                 success = false,
@@ -96,7 +93,6 @@ namespace ReadSeries.Controllers
                     }
                     else
                     {
-                        //ModelState.AddModelError("Arquivo", "Formato de arquivo inválido");
                         obj = new
                         {
                             success = false,
@@ -106,7 +102,6 @@ namespace ReadSeries.Controllers
                 }
             }
             return new ObjectResult(obj);
-            //return View("Index");
         }
     }
 }

@@ -1,57 +1,54 @@
 ﻿
 function Enviar() {
+
     var arquivo = $('#arquivo').prop("files");
 
-    var formData = new FormData;
-    formData.append("arquivo", arquivo[0]);
+    if (arquivo[0].type == "application/vnd.ms-excel") {
+        var formData = new FormData;
+        formData.append("arquivo", arquivo[0]);
 
-    $.ajax({
-        url: "Home/LerCSV",
-        type: 'POST',
-        data: formData,
-        success: function (data) {
-            console.log(data);
-            exibeGrafico(JSON.parse(data.data));
+        $.ajax({
+            url: "Home/LerCSV",
+            type: 'POST',
+            data: formData,
+            success: function (data) {
+                if (data.success)
+                    exibeGrafico(JSON.parse(data.data));
+                else
+                    alert('Erro: ' + data.message);
+            },
+            error: function (event) {
+                alert("Status : " + event.status + " Status Text : " + event.statusText);
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+    } else {
+        alert("Formato de aquivo inválido. Favor selecionar apenas arquivos .csv");
+    }
 
-        },
-        cache: false,
-        contentType: false,
-        processData: false
-    });
 }
 
 function exibeGrafico(data) {
-    console.log(typeof (data));
-    var datas_aux = [];//dados do tipo Date
-    var datas = [];//dados do tipo string
-
+    var datas = [];
     var data_displacement50ZI001 = [];
     var data_displacement50ZI002 = [];
     var data_displacement50ZI003 = [];
-
     var series_grafico = [];
 
     Object.keys(data).forEach(function (item) {
-        var data_aux = (data[item].Data).split(' ')[0];//[data, hora]
-        data_aux = data_aux.split('/');//[dia, mes, ano]
-        var data_ = new Date(data_aux[2], data_aux[1] - 1, data_aux[0]);//Ano, mês, dia]
-
-        if (datas.length >= 1 && !datas_aux.find(a_data => a_data.toISOString() == data_.toISOString())) {
-            datas_aux.push(data_);
-            datas.push((data[item].Data).split(' ')[0]);
-        }
-
-        if (datas.length == 0) {
-            datas_aux.push(data_);
-            datas.push((data[item].Data).split(' ')[0]);
-        }
-
+        datas.push(data[item].Data);
         data_displacement50ZI001.push(data[item]["50ZI001/COTA-DIF - Displacement (mm)"] != "" ? parseFloat((data[item]["50ZI001/COTA-DIF - Displacement (mm)"]).replace(',', '.')) : 0);
         data_displacement50ZI002.push(data[item]["50ZI002/COTA-DIF - Displacement (mm)"] != "" ? parseFloat((data[item]["50ZI002/COTA-DIF - Displacement (mm)"]).replace(',', '.')) : 0);
         data_displacement50ZI003.push(data[item]["50ZI003/COTA-DIF - Displacement (mm)"] != "" ? parseFloat((data[item]["50ZI003/COTA-DIF - Displacement (mm)"]).replace(',', '.')) : 0);
     });
 
-    var myChart = echarts.init(document.getElementById('grafico'));
+    //Verifica se o gráfico já foi "montado"
+    if (echarts.getInstanceByDom(document.getElementById('grafico')) == undefined)//se não, ele é "montado"
+        var myChart = echarts.init(document.getElementById('grafico'));
+    else
+        var myChart = echarts.getInstanceByDom(document.getElementById('grafico'));//se sim, ele é atualizado
 
     series_grafico.push({
         name: '50ZI001/COTA-DIF - Displacement (mm)',
